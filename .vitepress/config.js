@@ -1,7 +1,8 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  title: "Jic999's Blog",
+  base: '/blog'
+  title: 'Jic999's Blog',
   description: "Jic999's blog",
   lastUpdated: true,
   head: [
