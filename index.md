@@ -1,0 +1,10 @@
+---
+layout: home
+title: 主页
+---
+
+<script setup>
+import Home from './.vitepress/theme/components/Home.vue'
+</script>
+
+<Home />

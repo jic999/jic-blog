@@ -1,0 +1,11 @@
+html {
+  font-size: 4px;
+}
+
+.icon-btn {
+  transition: color 0.3s;
+  cursor: pointer;
+}
+.icon-btn:hover {
+  color: var(--vp-c-brand);
+}
