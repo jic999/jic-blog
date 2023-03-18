@@ -5,6 +5,7 @@ export default defineConfig({
   title: "Jic999's Blog",
   description: "Jic999's blog",
   lastUpdated: true,
+  cleanUrls: true,
   head: [
     [
       'link',

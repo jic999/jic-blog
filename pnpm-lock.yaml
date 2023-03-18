@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@iconify-json/ant-design': ^1.1.5
+  '@iconify/utils': ^2.1.5
   '@vueuse/core': ^9.13.0
   eslint: ^8.36.0
   eslint-config-prettier: ^8.7.0
@@ -19,6 +20,7 @@ dependencies:
 
 devDependencies:
   '@iconify-json/ant-design': registry.npmmirror.com/@iconify-json/ant-design/1.1.5
+  '@iconify/utils': registry.npmmirror.com/@iconify/utils/2.1.5
   eslint: registry.npmmirror.com/eslint/8.36.0
   eslint-config-prettier: registry.npmmirror.com/eslint-config-prettier/8.7.0_eslint@8.36.0
   eslint-plugin-prettier: registry.npmmirror.com/eslint-plugin-prettier/4.2.1_eqzx3hpkgx5nnvxls3azrcc7dm

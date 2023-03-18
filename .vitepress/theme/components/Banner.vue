@@ -2,8 +2,6 @@
 import { useDark, useToggle } from '@vueuse/core'
 import { onMounted } from 'vue'
 
-const AVATAR_URL = 'http://static.bchend.cn/blog/jic-avatar.jpg'
-
 const isDark = useDark({
   storageKey: 'vitepress-theme-appearance',
 })
@@ -17,10 +15,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="header relative mb-128 md:mb-96">
+  <div class="header relative">
     <div class="inner-header flex">
-      <h1 flex items-center>
-        <span class="i-custom-bookshelf" text-36 md:text-64 inline-block />
+      <h1 flex items-center gap-x-8>
+        <span class="i-custom-bookrack" text-32 md:text-42 inline-block />
         Jic999's Blog
       </h1>
     </div>
@@ -67,41 +65,6 @@ onMounted(() => {
         </g>
       </svg>
     </div>
-    <div class="absolute -b-24 flex justify-center w-full">
-      <div
-        :class="`animated fadeInUp flex flex-col gap-8 w-240 px-12 pt-42 pb-12
-          translate-y-48 md:translate-y-0 c-gray-6 bg-hex-fffc shadow-2xl br-8
-          dark:bg-1e1e20cc dark:text-gray-2 transition-600`"
-      >
-        <img
-          :src="AVATAR_URL"
-          :class="`absolute l-50p t-0 -translate-50% w-48 h-48 md:w-64 md:h-64
-            circle border-3 border-solid border-fff`"
-        />
-        <div text-16>Jic999</div>
-        <div style="color: var(--vp-c-text-2)" text-14>
-          这家伙似乎很懒，什么都没有留下~
-        </div>
-        <div
-          style="color: var(--vp-c-text-2)"
-          flex
-          justify-center
-          gap-x-8
-          text-16
-        >
-          <a
-            class="icon-btn i-ant-design:github-filled"
-            href="https://github.com/jic999"
-            target="_blank"
-          ></a>
-          <a
-            class="icon-btn i-custom:juejin"
-            href="https://juejin.cn/user/2617274671048504"
-            target="_blank"
-          ></a>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -142,7 +105,7 @@ p {
 }
 
 .inner-header {
-  height: 32vh;
+  height: 42vh;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -223,6 +186,9 @@ p {
 
   h1 {
     font-size: 32px;
+  }
+  .inner-header {
+    height: 30vh;
   }
 }
 

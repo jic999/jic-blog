@@ -4,6 +4,7 @@ author: jic999
 date: 2023-03-15
 tags: 滕王阁序 | 王勃 | 古文
 lastUpdated: 'Last Updated'
+banner: https://img1.baidu.com/it/u=1349746205,2389414761&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=576
 ---
 
 滕王阁序，这是一段摘录，概括了这篇文章的大致内容。
