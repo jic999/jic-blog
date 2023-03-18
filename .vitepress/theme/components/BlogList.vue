@@ -37,7 +37,7 @@ const router = useRouter()
       <!-- left -->
       <div
         :style="{ width: post.banner ? '' : '100%' }"
-        class="flex flex-col gap-y-8 w-64p md:w-72p"
+        class="flex flex-col gap-y-8 max-w-60p md:max-w-72p"
       >
         <!-- info -->
         <div flex items-center gap-x-16>

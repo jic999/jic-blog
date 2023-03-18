@@ -1,18 +1,4 @@
-<script setup>
-import { useDark, useToggle } from '@vueuse/core'
-import { onMounted } from 'vue'
-
-const isDark = useDark({
-  storageKey: 'vitepress-theme-appearance',
-})
-
-const toggleDark = useToggle(isDark)
-onMounted(() => {
-  document
-    .querySelector('.VPSwitch.VPSwitchAppearance')
-    .addEventListener('click', () => toggleDark())
-})
-</script>
+<script setup></script>
 
 <template>
   <div class="header relative">
@@ -42,25 +28,29 @@ onMounted(() => {
             xlink:href="#gentle-wave"
             x="48"
             y="0"
-            :fill="isDark ? '#1e1e20b3' : '#ffffffb3'"
+            class="text-ffffffb3 dark:text-1e1e20b3"
+            fill="currentColor"
           />
           <use
             xlink:href="#gentle-wave"
             x="48"
             y="3"
-            :fill="isDark ? '#1e1e20b3' : '#ffffff80'"
+            class="text-ffffff80 dark:text-1e1e2080"
+            fill="currentColor"
           />
           <use
             xlink:href="#gentle-wave"
             x="48"
             y="5"
-            :fill="isDark ? '#1e1e204d' : '#ffffff4d'"
+            class="text-ffffff4d dark:text-1e1e204d"
+            fill="currentColor"
           />
           <use
             xlink:href="#gentle-wave"
             x="48"
             y="7"
-            :fill="isDark ? '#1e1e20' : '#fff'"
+            class="text-fff dark:text-1e1e20"
+            fill="currentColor"
           />
         </g>
       </svg>
