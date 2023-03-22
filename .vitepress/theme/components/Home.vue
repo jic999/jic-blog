@@ -8,7 +8,8 @@ const AVATAR_URL = 'http://static.bchend.cn/blog/jic-avatar.jpg'
   <Banner />
   <main class="main" flex justify-center>
     <div
-      :class="`relative w-720 py-24 translate-y-0 md:-translate-y-128 bg-hex-fffc shadow-xl dark:bg-hex-222c`"
+      :class="`relative w-720 py-24 translate-y-0 md:-translate-y-128 shadow-xl 
+        md:bg-hex-fffc md:dark:bg-hex-222c bg-hex-fff dark:bg-dark_bg`"
     >
       <!--名片  -->
       <div flex-center py-24>
