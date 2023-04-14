@@ -1,50 +1,102 @@
 <script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import Banner from './Banner.vue'
+import PersonalCard from './PersonalCard.vue'
 import BlogList from './BlogList.vue'
-const AVATAR_URL = 'http://static.bchend.cn/blog/jic-avatar.jpg'
+import TagWall from './TagWall.vue'
+import CategoryWall from './CategoryWall.vue'
+import { animateCSS } from '../utils/animateUtils'
+
+const siderVisibleRef = ref(false)
+const $blogList = ref(null)
+const $cateWall = ref(null)
+const $tagWall = ref(null)
+
+function showSider() {
+  siderVisibleRef.value = true
+  animateCSS('.cate-wall', 'fadeInLeft')
+  animateCSS('.tag-wall', 'fadeInRight')
+}
+function hideSider() {
+  animateCSS('.cate-wall', 'fadeOutLeft', () => (siderVisibleRef.value = false))
+  animateCSS('.tag-wall', 'fadeOutRight')
+}
+
+function windowScrollHandler() {
+  toggleSiderVisible()
+  toggleSiderPosition()
+}
+function toggleSiderVisible() {
+  if (document.documentElement.clientWidth < 1024) return
+  const windowScrollY = window.scrollY
+  if (windowScrollY > 128 && !siderVisibleRef.value) showSider()
+  else if (windowScrollY < 128 && siderVisibleRef.value) hideSider()
+}
+// function windowResizeHandler() {
+//   if (window.scrollY < 128) return
+//   const offsetWidth = document.documentElement.clientWidth
+//   if (offsetWidth < 1024 && siderVisibleRef.value) hideSider()
+//   else if (offsetWidth > 1024 && !siderVisibleRef.value) showSider()
+// }
+onMounted(() => {
+  window.addEventListener('scroll', windowScrollHandler)
+  // window.addEventListener('resize', windowResizeHandler)
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', windowScrollHandler)
+  // window.removeEventListener('resize', windowResizeHandler)
+})
 </script>
 
 <template>
   <Banner />
-  <main class="main" flex justify-center>
+  <main class="main" flex justify-center items-start>
+    <!-- Left -->
     <div
-      :class="`relative w-720 py-24 translate-y-0 md:-translate-y-128 shadow-xl 
-        md:bg-hex-fffc md:dark:bg-hex-222c bg-hex-fff dark:bg-dark_bg`"
+      v-show="siderVisibleRef"
+      ref="$cateWall"
+      class="cate-wall animate__faster lg:block hidden w-240 min-h-480 mt-128 border-r-0"
+    >
+      <CategoryWall />
+    </div>
+    <!-- Center -->
+    <div
+      ref="blogList"
+      class="blog-list relative w-720 min-h-810 py-24 translate-y-12 md:-translate-y-128 shadow-xl z-3"
+      bg="md:hex-fffc md:dark:hex-222c hex-fff dark:dark_bg "
     >
       <!--名片  -->
-      <div flex-center py-24>
-        <img
-          :src="AVATAR_URL"
-          :class="`absolute l-50% t-0 -translate-50%
-            w-72 h-72 br-50 border-2 border-fff`"
-        />
-        <div flex flex-col gap-4 w-240 text-center>
-          <h3>Jic999</h3>
-          <p text-14>这家伙似乎很懒，什么都没有留下~</p>
-          <div flex-center gap-8 mt-8>
-            <a
-              class="icon-btn i-ant-design:github-filled"
-              href="https://github.com/jic999"
-              target="_blank"
-            ></a>
-            <a
-              class="icon-btn i-custom-juejin"
-              href="https://juejin.cn/user/2617274671048504"
-              target="_blank"
-            ></a>
-          </div>
-        </div>
-      </div>
+      <PersonalCard />
       <!-- 文章列表 -->
       <BlogList />
+    </div>
+    <!-- Right -->
+    <div
+      v-show="siderVisibleRef"
+      ref="$tagWall"
+      class="tag-wall animate__faster lg:block hidden w-240 min-h-480 mt-128"
+    >
+      <TagWall />
     </div>
   </main>
 </template>
 
 <style lang="scss" scoped>
 .main {
-  position: relative;
   max-width: calc(var(--vp-layout-max-width));
   margin: 0 auto;
+}
+.cate-wall,
+.tag-wall {
+  border-width: 1px;
+}
+.cate-wall {
+  border-right: none;
+}
+.tag-wall {
+  border-left: none;
+}
+.blog-list {
+  transition: all 0.5s;
 }
 </style>

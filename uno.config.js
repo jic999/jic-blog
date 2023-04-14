@@ -11,7 +11,7 @@ import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders'
 export default defineConfig({
   rules: [
     [
-      /border-(\d+)-(\w+)-([a-f0-9]{3,7})/,
+      /border-(\d+)-(\w+)-([a-f0-9]{3,8})/,
       ([, width, style, color]) => ({
         border: `${width}px ${style} #${color}`,
       }),

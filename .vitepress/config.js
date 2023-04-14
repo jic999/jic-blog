@@ -1,17 +1,19 @@
 import { defineConfig } from 'vitepress'
+import path from 'path'
+
+import post from './theme/post.data'
+import { readMdFiles } from './theme/utils/postsUtils'
+
+const files = readMdFiles(path.resolve('posts'))
+const { postsByDir, postsByTag } = post.load(files)
 
 export default defineConfig({
   base: '/',
-  title: "Jic999's Blog",
+  title: 'Jic999',
   description: "Jic999's blog",
   lastUpdated: true,
   cleanUrls: true,
-  head: [
-    [
-      'link',
-      { rel: 'shortcut icon', href: '/favicon.ico', type: 'image/x-icon' },
-    ],
-  ],
+  head: [['link', { rel: 'shortcut icon', href: '/favicon.ico', type: 'image/x-icon' }]],
   themeConfig: {
     lastUpdatedText: '最后更新',
     outline: {
@@ -38,15 +40,20 @@ export default defineConfig({
   },
 })
 
+function getSidebarItems(dir, sort = 'desc') {
+  const posts = postsByDir[dir].map((post) => ({
+    text: post.title,
+    link: post.path,
+  }))
+  if (sort === 'desc') return posts.reverse()
+  return posts
+}
 function blogSidebar() {
   return [
     {
       text: 'Blog',
       link: '/posts/',
-      items: [
-        { text: 'blog start', link: '/posts/blog-start' },
-        { text: '测试文章', link: '/posts/blog-test' },
-      ],
+      items: getSidebarItems('posts'),
     },
   ]
 }
@@ -54,9 +61,9 @@ function blogSidebar() {
 function diarySidebar() {
   return [
     {
-      text: '日记',
+      text: 'Diary',
       link: '/posts/diary/',
-      items: [{ text: '第一篇', link: '/posts/diary/001' }],
+      items: getSidebarItems('diary'),
     },
   ]
 }

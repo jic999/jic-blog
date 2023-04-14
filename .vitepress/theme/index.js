@@ -3,6 +3,7 @@ import { h } from 'vue'
 import Theme from 'vitepress/theme'
 import './styles/index.scss'
 import 'uno.css'
+import 'animate.css'
 
 export default {
   ...Theme,
@@ -13,5 +14,6 @@ export default {
   },
   enhanceApp({ app, router, siteData }) {
     // ...
+    siteData.posts = ['posts']
   },
 }

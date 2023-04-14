@@ -1,9 +1,9 @@
-// article.data.js
-import fs from 'node:fs'
-import path from 'node:path'
+import fs from 'fs'
+import path from 'path'
 import matter from 'gray-matter'
+import { categorizePosts } from './utils/postsUtils'
 
-const excludedFiles = ['index.md', 'tags.md', 'archives.md', 'me.md']
+const excludedFiles = ['index.md']
 
 export default {
   watch: ['../../posts/**/*.md'],
@@ -14,7 +14,7 @@ export default {
       return !excludedFiles.includes(filename)
     })
     // 解析文章 Frontmatter
-    return articleFiles
+    posts = articleFiles
       .map((articleFile) => {
         const articleContent = fs.readFileSync(articleFile, 'utf-8')
         const { data, excerpt } = matter(articleContent, { excerpt: true })
@@ -23,12 +23,16 @@ export default {
           ...data,
           date: formatDate(data.date),
           excerpt,
-          path: articleFile
-            .substring(articleFile.lastIndexOf('/posts/'))
-            .replace(/\.md$/, ''),
+          path: articleFile.substring(articleFile.lastIndexOf('/posts/')).replace(/\.md$/, ''),
         }
       })
       .sort((a, b) => b.date.time - a.date.time)
+    const { postsByDir, postsByTag } = categorizePosts(posts)
+    return {
+      posts,
+      postsByDir,
+      postsByTag,
+    }
   },
 }
 

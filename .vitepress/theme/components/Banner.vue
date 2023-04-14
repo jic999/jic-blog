@@ -85,6 +85,9 @@ p {
   background: linear-gradient(60deg, #000 0%, #fff 100%);
   color: white;
 }
+.dark .header {
+  background: linear-gradient(60deg, #fff 0%, #000 100%);
+}
 
 .logo {
   width: 50px;
@@ -183,15 +186,12 @@ p {
 }
 
 @keyframes floating {
-  /* 动画开始时，元素不移动 */
   0% {
     transform: translate(0, 0);
   }
-  /* 动画进行到一半时，元素向上移动24px */
   50% {
     transform: translate(0, -24px);
   }
-  /* 动画结束时，元素回到原位 */
   100% {
     transform: translate(0, 0);
   }

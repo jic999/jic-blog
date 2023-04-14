@@ -1,7 +1,25 @@
 .icon-btn {
   transition: color 0.3s;
   cursor: pointer;
+  &:hover {
+    color: var(--vp-c-brand);
+  }
 }
-.icon-btn:hover {
-  color: var(--vp-c-brand);
+
+/* 自定义滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+// 滑块
+::-webkit-scrollbar-thumb {
+  background-color: var(--vp-c-text-2);
+  border: 2px solid var(--vp-c-bg);
+  border-radius: 10px;
+  &:hover {
+    background-color: var(--vp-c-text-1);
+  }
+}
+/* 轨道 */
+::-webkit-scrollbar-track {
+  background-color: var(--vp-c-bg);
 }
