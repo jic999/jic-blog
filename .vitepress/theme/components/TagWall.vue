@@ -7,7 +7,7 @@ const tags = Object.keys(postsByTag)
   .sort((a, b) => postsByTag[a].length - postsByTag[a].length[b])
   .splice(0, 24)
 
-const tagColors = [
+let tagColors = [
   '#34d399',
   '#059669',
   '#22d3ee',
@@ -21,14 +21,8 @@ const tagColors = [
   '#fb7185',
   '#e11d48',
 ]
-let tagColorsCopy = tagColors
-function getRandomColor() {
-  if (tagColorsCopy.length === 0) tagColorsCopy = tagColors
-  const start = 0
-  const end = tagColorsCopy.length
-  const index = Math.floor(Math.random() * end) + start
-  return tagColorsCopy.splice(index, 1)
-}
+tagColors = tagColors.sort(() => (Math.random() > 0.5 ? 1 : -1))
+const getColor = (i) => tagColors[i % tagColors.length]
 
 const router = useRouter()
 </script>
@@ -38,10 +32,10 @@ const router = useRouter()
     <h3 my-12 italic>Tags</h3>
     <div flex flex-wrap gap-x-12 gap-y-8 w-full text-fff>
       <span
-        v-for="tag in tags"
+        v-for="(tag, i) in tags"
         :key="tag"
         class="tag-item px-12 text-12 br-16 cursor-pointer"
-        :style="{ background: getRandomColor() }"
+        :style="{ background: getColor(i) }"
         @click="router.go('/pages/tag-detail')"
       >
         {{ tag }}

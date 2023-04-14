@@ -24,7 +24,6 @@ function hideSider() {
 
 function windowScrollHandler() {
   toggleSiderVisible()
-  toggleSiderPosition()
 }
 function toggleSiderVisible() {
   if (document.documentElement.clientWidth < 1024) return
@@ -32,19 +31,11 @@ function toggleSiderVisible() {
   if (windowScrollY > 128 && !siderVisibleRef.value) showSider()
   else if (windowScrollY < 128 && siderVisibleRef.value) hideSider()
 }
-// function windowResizeHandler() {
-//   if (window.scrollY < 128) return
-//   const offsetWidth = document.documentElement.clientWidth
-//   if (offsetWidth < 1024 && siderVisibleRef.value) hideSider()
-//   else if (offsetWidth > 1024 && !siderVisibleRef.value) showSider()
-// }
 onMounted(() => {
   window.addEventListener('scroll', windowScrollHandler)
-  // window.addEventListener('resize', windowResizeHandler)
 })
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', windowScrollHandler)
-  // window.removeEventListener('resize', windowResizeHandler)
 })
 </script>
 
